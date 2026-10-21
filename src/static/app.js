@@ -875,6 +875,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Initialize app
   expireBanner();
+  setInterval(expireBanner, 1000);
   checkAuthentication();
   initializeFilters();
   fetchActivities();
