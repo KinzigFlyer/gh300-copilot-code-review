@@ -51,6 +51,17 @@ document.addEventListener("DOMContentLoaded", () => {
     weekend: { days: ["Saturday", "Sunday"] }, // Weekend days
   };
 
+  function expireBanner() {
+      document.querySelectorAll(".announcement-banner").forEach((banner) => {
+        if (!banner) return;
+        var expiration = new Date(banner.dataset.expiration);
+        if (!isNaN(expiration) && new Date() > expiration) {
+          banner.dataset.expired = "true";
+        }
+      });
+  };
+
+
   // Initialize filters from active elements
   function initializeFilters() {
     // Initialize day filter
@@ -65,6 +76,7 @@ document.addEventListener("DOMContentLoaded", () => {
       currentTimeRange = activeTimeFilter.dataset.time;
     }
   }
+
 
   // Function to set day filter
   function setDayFilter(day) {
@@ -862,7 +874,10 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   // Initialize app
+  expireBanner();
+  setInterval(expireBanner, 1000);
   checkAuthentication();
   initializeFilters();
   fetchActivities();
 });
+
