@@ -672,3 +672,8 @@ footer {
   padding: 0.8rem;
   font-weight: bold;
 }
+
+/* Hide the announcement banner once its expiration date has passed */
+.announcement-banner[data-expired="true"] {
+    display: none;
+}
